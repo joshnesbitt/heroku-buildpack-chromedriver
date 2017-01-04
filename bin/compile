@@ -5,7 +5,7 @@
 # ./bin/compile BUILD_DIR CACHE_DIR
 
 set -e # fail fast
-set -x # debug
+# set -x # debug
 
 function marker() {
   echo "-----> $*"
@@ -43,7 +43,6 @@ mkdir -p $DRIVER_DIR
 curl $DRIVER_URL -s -o $DRIVER_PATH
 unzip $DRIVER_PATH -d $DRIVER_DIR
 rm $DRIVER_PATH
-ls -lah $DRIVER_DIR
 
 marker "Writing profile.d script"
 mkdir -p $BUILD_DIR/.profile.d
