@@ -36,7 +36,7 @@ ln -s ../../opt/google/chrome/google-chrome google-chrome
 marker "Downloading and installing ChromeDriver"
 
 DRIVER_URL="http://chromedriver.storage.googleapis.com/2.16/chromedriver_linux64.zip"
-DRIVER_DIR=$BUILD_DIR/vendor/chromedriver
+DRIVER_DIR=$BUILD_DIR/vendor/chromedriver/bin
 DRIVER_PATH=$BUILD_DIR/vendor/chromedriver/chromedriver.zip
 
 mkdir -p $DRIVER_DIR
@@ -48,5 +48,5 @@ ls -lah $DRIVER_DIR
 marker "Writing profile.d script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/chromedriver.sh
-export PATH="\$HOME/vendor/chromedriver:\$PATH"
+export PATH="\$HOME/vendor/chromedriver/bin:\$PATH"
 EOF
