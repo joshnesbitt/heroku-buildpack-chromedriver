@@ -35,7 +35,8 @@ ln -s ../../opt/google/chrome/google-chrome google-chrome
 
 marker "Downloading and installing ChromeDriver"
 
-DRIVER_URL="http://chromedriver.storage.googleapis.com/2.16/chromedriver_linux64.zip"
+DRIVER_VERSION="2.19"
+DRIVER_URL="http://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
 DRIVER_DIR=$BUILD_DIR/vendor/chromedriver/bin
 DRIVER_PATH=$BUILD_DIR/vendor/chromedriver/chromedriver.zip
 
