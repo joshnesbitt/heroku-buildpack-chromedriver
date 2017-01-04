@@ -45,9 +45,12 @@ curl $DRIVER_URL -s -o $DRIVER_PATH
 unzip $DRIVER_PATH -d $DRIVER_DIR
 rm $DRIVER_PATH
 
-marker "Writing profile.d script"
-mkdir -p $BUILD_DIR/.profile.d
-cat <<EOF >$BUILD_DIR/.profile.d/chromedriver.sh
-export PATH="\$HOME/vendor/chromedriver/bin:\$PATH"
-export CHROME_BIN="\$HOME/vendor/chromedriver/bin/chromedriver"
-EOF
+
+./$HOME/vendor/chromedriver/bin/chromedriver
+
+# marker "Writing profile.d script"
+# mkdir -p $BUILD_DIR/.profile.d
+# cat <<EOF >$BUILD_DIR/.profile.d/chromedriver.sh
+# export PATH="\$HOME/vendor/chromedriver/bin:\$PATH"
+# export CHROME_BIN="\$HOME/vendor/chromedriver/bin/chromedriver"
+# EOF
