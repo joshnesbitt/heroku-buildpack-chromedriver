@@ -49,4 +49,5 @@ marker "Writing profile.d script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/chromedriver.sh
 export PATH="\$HOME/vendor/chromedriver/bin:\$PATH"
+export CHROME_BIN="\$HOME/vendor/chromedriver/bin/chromedriver"
 EOF
