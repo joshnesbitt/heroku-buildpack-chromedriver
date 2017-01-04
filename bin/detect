@@ -4,11 +4,4 @@
 #
 # ./bin/detect BUILD_DIR
 
-BUILD_DIR=$1
-EXPECTED_PATH=$BUILD_DIR/vendor/chromedriver/bin
-
-if [ -d $EXPECTED_PATH ]; then
-  echo "Not installed." && exit 1
-else
-  echo "Installed." && exit 0
-fi
+echo "Chromedriver" && exit 0
