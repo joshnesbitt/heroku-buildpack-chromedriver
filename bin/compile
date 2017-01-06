@@ -14,7 +14,7 @@ function marker() {
 marker "Linking headless chrome to google chrome."
 
 SOURCE="$HOME/.heroku/headless-chrome"
-TARGET=$(which google-chrome)
+TARGET="$HOME/.heroku/google-chrome"
 
 ln -s SOURCE TARGET
 
