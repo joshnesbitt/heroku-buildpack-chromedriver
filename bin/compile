@@ -5,7 +5,7 @@
 # ./bin/compile BUILD_DIR CACHE_DIR
 
 set -e # fail fast
-# set -x # debug
+set -x # debug
 
 function marker() {
   echo "-----> $*"
