@@ -16,7 +16,7 @@ marker "Linking headless chrome to google chrome."
 SOURCE="$HOME/.heroku/headless-chrome"
 TARGET="$HOME/.heroku/google-chrome"
 
-ln -s $SOURCE $TARGET
+ln -s $TARGET $SOURCE
 
 # BUILD_DIR=$1
 # CACHE_DIR=$2
