@@ -11,45 +11,52 @@ function marker() {
   echo "-----> $*"
 }
 
-BUILD_DIR=$1
-CACHE_DIR=$2
-APT_CACHE_DIR="$CACHE_DIR/apt/cache"
-APT_STATE_DIR="$CACHE_DIR/apt/state"
+marker "Linking headless chrome to google chrome."
 
-marker "Installing dependencies"
+SOURCE="$HOME/.heroku/headless-chrome"
+TARGET=$(which google-chrome)
 
-mkdir -p "$APT_CACHE_DIR/archives/partial"
-mkdir -p "$APT_STATE_DIR/lists/partial"
+ln -s SOURCE TARGET
 
-marker "Downloading and installing Chrome"
+# BUILD_DIR=$1
+# CACHE_DIR=$2
+# APT_CACHE_DIR="$CACHE_DIR/apt/cache"
+# APT_STATE_DIR="$CACHE_DIR/apt/state"
 
-PACKAGE="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-PACKAGE_NAME=$(basename $PACKAGE .deb)
-PACKAGE_FILE=$APT_CACHE_DIR/archives/$PACKAGE_NAME.deb
+# marker "Installing dependencies"
 
-marker "Fetching $PACKAGE"
-curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1
+# mkdir -p "$APT_CACHE_DIR/archives/partial"
+# mkdir -p "$APT_STATE_DIR/lists/partial"
 
-marker "Installing $PACKAGE"
-dpkg -x $PACKAGE_FILE $BUILD_DIR/.apt/
-cd $BUILD_DIR/.apt/usr/bin
-ln -s ../../opt/google/chrome/google-chrome google-chrome
+# marker "Downloading and installing Chrome"
 
-marker "Downloading and installing ChromeDriver"
+# PACKAGE="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+# PACKAGE_NAME=$(basename $PACKAGE .deb)
+# PACKAGE_FILE=$APT_CACHE_DIR/archives/$PACKAGE_NAME.deb
 
-DRIVER_VERSION="2.19"
-DRIVER_URL="http://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
-DRIVER_DIR=$BUILD_DIR/vendor/chromedriver/bin
-DRIVER_PATH=$BUILD_DIR/vendor/chromedriver/chromedriver.zip
+# marker "Fetching $PACKAGE"
+# curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1
 
-mkdir -p $DRIVER_DIR
-curl $DRIVER_URL -s -o $DRIVER_PATH
-unzip $DRIVER_PATH -d $DRIVER_DIR
-rm $DRIVER_PATH
+# marker "Installing $PACKAGE"
+# dpkg -x $PACKAGE_FILE $BUILD_DIR/.apt/
+# cd $BUILD_DIR/.apt/usr/bin
+# ln -s ../../opt/google/chrome/google-chrome google-chrome
 
-marker "Writing profile.d script"
-mkdir -p $BUILD_DIR/.profile.d
-cat <<EOF >$BUILD_DIR/.profile.d/chromedriver.sh
-export PATH="\$HOME/vendor/chromedriver/bin:\$PATH"
-export CHROME_BIN="\$HOME/vendor/chromedriver/bin/chromedriver"
-EOF
+# marker "Downloading and installing ChromeDriver"
+
+# DRIVER_VERSION="2.19"
+# DRIVER_URL="http://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
+# DRIVER_DIR=$BUILD_DIR/vendor/chromedriver/bin
+# DRIVER_PATH=$BUILD_DIR/vendor/chromedriver/chromedriver.zip
+
+# mkdir -p $DRIVER_DIR
+# curl $DRIVER_URL -s -o $DRIVER_PATH
+# unzip $DRIVER_PATH -d $DRIVER_DIR
+# rm $DRIVER_PATH
+
+# marker "Writing profile.d script"
+# mkdir -p $BUILD_DIR/.profile.d
+# cat <<EOF >$BUILD_DIR/.profile.d/chromedriver.sh
+# export PATH="\$HOME/vendor/chromedriver/bin:\$PATH"
+# export CHROME_BIN="\$HOME/vendor/chromedriver/bin/chromedriver"
+# EOF
